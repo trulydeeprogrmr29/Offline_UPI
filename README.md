@@ -10,14 +10,15 @@ This repo is the **server side** of that system, plus a software simulator of th
 
 1. [What this demo proves](#what-this-demo-proves)
 2. [How to run it](#how-to-run-it)
-3. [The demo flow (step by step)](#the-demo-flow-step-by-step)
-4. [Architecture](#architecture)
-5. [The three hard problems and how they're solved](#the-three-hard-problems-and-how-theyre-solved)
-6. [File-by-file walkthrough](#file-by-file-walkthrough)
-7. [API reference](#api-reference)
-8. [Tests](#tests)
-9. [What's NOT real (and what would change for production)](#whats-not-real-and-what-would-change-for-production)
-10. [Honest limitations of the concept](#honest-limitations-of-the-concept)
+3. [Deploy to Render](#deploy-to-render)
+4. [The demo flow (step by step)](#the-demo-flow-step-by-step)
+5. [Architecture](#architecture)
+6. [The three hard problems and how they're solved](#the-three-hard-problems-and-how-theyre-solved)
+7. [File-by-file walkthrough](#file-by-file-walkthrough)
+8. [API reference](#api-reference)
+9. [Tests](#tests)
+10. [What's NOT real (and what would change for production)](#whats-not-real-and-what-would-change-for-production)
+11. [Honest limitations of the concept](#honest-limitations-of-the-concept)
 
 ---
 
@@ -55,6 +56,16 @@ The first run downloads Maven (~10 MB) and all dependencies (~80 MB) — give it
 ```bash
 ./mvnw spring-boot:run
 ```
+
+## Deploy to Render
+
+The repository includes a `Dockerfile` and `render.yaml` for a free Render web service.
+
+1. Push this repository, including these deployment files, to GitHub.
+2. In Render, choose **New** → **Blueprint**, connect the GitHub repository, and deploy the detected `render.yaml`.
+3. Open the service URL Render provides.
+
+The app listens on Render's assigned port and still defaults to port 8080 when run locally. The free service may spin down when idle, and its in-memory H2 database is reset whenever the app restarts; this deployment is intended for demos, not persistent payment data.
 
 ### Open the dashboard
 
